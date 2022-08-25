@@ -156,3 +156,79 @@ const lengthOfLongestSubstring = (s) => {
     return ans
 }
 ```
+
+4. 寻找两个正序数组的中位数  
+给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。  
+算法的时间复杂度应该为 O(log (m+n)) 。  
+
+ 
+
+> 示例 1：  
+输入：nums1 = [1,3], nums2 = [2]
+输出：2.00000
+解释：合并数组 = [1,2,3] ，中位数 2
+
+>示例 2：  
+输入：nums1 = [1,2], nums2 = [3,4]
+输出：2.50000
+解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5
+
+>提示：  
+nums1.length == m
+nums2.length == n
+0 <= m <= 1000
+0 <= n <= 1000
+1 <= m + n <= 2000
+-106 <= nums1[i], nums2[i] <= 106
+```js
+/**
+    @param {number[]} nums1
+    @param {number[]} nums2
+    @return {number}
+*/
+
+const findMedianSortedArrays = (nums1, nums2) => {
+    if (nums1.length > nums2.length) {
+        let temp = nums1
+        nums1 = nums2
+        nums2 = temp
+    }
+
+    let m = nums1.length
+    let n = nums2.length
+
+    // 分割线左侧元素需要满足 m + (n - m + 1) / 2
+    let totalLeft = Math.floor((m + n + 1) / 2)
+
+    // 分割线nums1 [0, m] 区间查找
+    // 满足 nums1[i - 1] <= nums2[j] && nums2[j - 1] <= nums1[i]
+
+    let left = 0
+    let right = m
+
+    while(left < right) {
+        let i = Math.floor((left + right + 1) / 2)
+        let j = totalLeft - i
+        if (nums1[i - 1] > nums2[j]) {
+            // 下一个区间搜索 [0, i - 1]
+            right = i - 1
+        } else {
+            left = i
+        }
+    }
+
+    let i = left
+    let j = totalLeft - i
+
+    let nums1LeftMax = i === 0 ? -Infinity : nums1[i - 1]
+    let nums1RightMin = i === m ? Infinity : nums1[i]
+    let nums2LeftMax = j === 0 ? -Infinity : nums2[j - 1]
+    let nums2RightMin = j === n ? Infinity : nums2[j]
+
+    if ((m + n) % 2 === 1) {
+        return Math.max(nums1LeftMax, nums2LeftMax)
+    } else {
+        return (Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin)) / 2
+    }
+}
+```
