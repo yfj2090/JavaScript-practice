@@ -156,10 +156,13 @@ const lengthOfLongestSubstring = (s) => {
     return ans
 }
 ```
+<<<<<<< HEAD
 
 4. 寻找两个正序数组的中位数  
 给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。  
 算法的时间复杂度应该为 O(log (m+n)) 。  
+
+>>>>>>> a1c18d3208bd81902e2527f0aea78fb013fec4f0
 
  
 
@@ -168,11 +171,15 @@ const lengthOfLongestSubstring = (s) => {
 输出：2.00000
 解释：合并数组 = [1,2,3] ，中位数 2
 
+<<<<<<< HEAD
 >示例 2：  
+
+>>>>>>> a1c18d3208bd81902e2527f0aea78fb013fec4f0
 输入：nums1 = [1,2], nums2 = [3,4]
 输出：2.50000
 解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5
 
+<<<<<<< HEAD
 >提示：  
 nums1.length == m
 nums2.length == n
@@ -188,6 +195,8 @@ nums2.length == n
 */
 
 const findMedianSortedArrays = (nums1, nums2) => {
+
+>>>>>>> a1c18d3208bd81902e2527f0aea78fb013fec4f0
     if (nums1.length > nums2.length) {
         let temp = nums1
         nums1 = nums2
@@ -196,6 +205,7 @@ const findMedianSortedArrays = (nums1, nums2) => {
 
     let m = nums1.length
     let n = nums2.length
+<<<<<<< HEAD
 
     // 分割线左侧元素需要满足 m + (n - m + 1) / 2
     let totalLeft = Math.floor((m + n + 1) / 2)
@@ -213,6 +223,8 @@ const findMedianSortedArrays = (nums1, nums2) => {
             // 下一个区间搜索 [0, i - 1]
             right = i - 1
         } else {
+
+>>>>>>> a1c18d3208bd81902e2527f0aea78fb013fec4f0
             left = i
         }
     }
@@ -228,7 +240,10 @@ const findMedianSortedArrays = (nums1, nums2) => {
     if ((m + n) % 2 === 1) {
         return Math.max(nums1LeftMax, nums2LeftMax)
     } else {
+<<<<<<< HEAD
         return (Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin)) / 2
     }
 }
 ```
+
+>>>>>>> a1c18d3208bd81902e2527f0aea78fb013fec4f0
